@@ -1,6 +1,14 @@
-const mongoose = require('../database');
+const client = require('../database');
 
-const UserSchema = new mongoose.Schema({
+
+
+client.connect();
+
+const database = client.db('uploadexample');
+const Users = database.collection('users')
+
+client.close();
+/*const UserSchema = new mongoose.Schema({
 
     name: {
         type: String,
@@ -17,13 +25,15 @@ const UserSchema = new mongoose.Schema({
         required: true,
         select: false,
     },
-    createdAt: {
+   // createdAt: {
+//
+     //   type: Date,
+    //    default: Date.now,
+    //}
+}); */
 
-        type: Date,
-        default: Date.now,
-    }
-});
+//const User = mongoose.model('User', UserSchema);
 
-const User = mongoose.model('User', UserSchema);
 
-module.exports = User;
+
+module.exports = Users;
